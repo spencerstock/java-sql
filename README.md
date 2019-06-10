@@ -17,10 +17,10 @@ Answer the following data queries. Keep track of the SQL you write by pasting it
 ### **Clicking the `Restore Database` button in the page will repopulate the database with the original data and discard all changes you have made**.
 
 ### find all customers that live in London. Returns 6 records.
-> This can be done with SELECT and WHERE clauses
+SELECT * FROM Customers WHERE City = 'London'
 
 ### find all customers with postal code 1010. Returns 3 customers.
-> This can be done with SELECT and WHERE clauses
+SELECT * FROM Customers WHERE PostalCode = '1010'
 
 ### find the phone number for the supplier with the id 11. Should be (010) 9984510.
 > This can be done with SELECT and WHERE clauses
