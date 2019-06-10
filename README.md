@@ -23,24 +23,32 @@ SELECT * FROM Customers WHERE City = 'London'
 SELECT * FROM Customers WHERE PostalCode = '1010'
 
 ### find the phone number for the supplier with the id 11. Should be (010) 9984510.
-> This can be done with SELECT and WHERE clauses
+SELECT * FROM Suppliers WHERE SupplierID = 11
 
 ### list orders descending by the order date. The order with date 1997-02-12 should be at the top.
-> This can be done with SELECT, WHERE, and ORDER BY clauses
+SELECT * FROM Orders ORDER BY OrderDate DESC
 
 ### find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
-> This can be done with SELECT and WHERE clauses
+SELECT * 
+FROM Suppliers
+WHERE length(SupplierName) > 20
 
 ### find all customers that include the word "market" in the name. Should return 4 records.
-> This can be done with SELECT and a WHERE clause using the LIKE keyword
+SELECT * 
+FROM Customers
+WHERE CustomerName 
+LIKE '%market%'
 
 > Don't forget the wildcard '%' symbols at the beginning and end of your substring to denote it can appear anywhere in the string in question
 
 ### add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
-> This can be done with the INSERT INTO clause
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth')
 
 ### update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
-> This can be done with UPDATE and WHERE clauses
+UPDATE Customers
+SET PostalCode = '11122'
+WHERE CustomerName = 'The Shire'
 
 ### list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 > This can be done with SELECT, COUNT, JOIN and GROUP BY clauses. Your count should focus on a field in the Orders table, not the Customer table
