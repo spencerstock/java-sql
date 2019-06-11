@@ -53,22 +53,40 @@ WHERE CustomerName = 'The Shire'
 ### list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 > This can be done with SELECT, COUNT, JOIN and GROUP BY clauses. Your count should focus on a field in the Orders table, not the Customer table
 
-> There is more information about the COUNT clause on [W3 Schools](https://www.w3schools.com/sql/sql_count_avg_sum.asp)
+SELECT c.CustomerName, Count() as NumberOfOrders
+FROM Orders o 
+JOIN Customers c 
+WHERE o.CustomerID = c.CustomerID 
+GROUP BY c.CustomerName
 
 ### list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
-> This can be done by adding an ORDER BY clause to the previous answer
+
+SELECT c.CustomerName, Count() as NumberOfOrders
+FROM Orders o 
+JOIN Customers c 
+WHERE o.CustomerID = c.CustomerID 
+GROUP BY c.CustomerName
+ORDER BY NumberOfOrders DESC
 
 ### list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
-> This is very similar to the previous two queries, however, it focuses on the City rather than the CustomerName
+
+SELECT c.City, Count() as NumberOfOrders
+FROM Orders o 
+JOIN Customers c 
+WHERE o.CustomerID = c.CustomerID 
+GROUP BY c.City
+ORDER BY c.City
 
 ## Stretch Goals
 
 ### delete all customers that have no orders. Should delete 17 (or 18 if you haven't deleted the record added) records.
-> This is done with a DELETE query
+DELETE FROM Customers 
+WHERE CustomerID 
+NOT IN 
+	(SELECT CustomerID 
+    FROM Orders)
 
-> In the WHERE clause, you can provide another list with an IN keyword this list can be the result of another SELECT query. Write a query to return a list of CustomerIDs that meet the criteria above. Pass that to the IN keyword of the WHERE clause as the list of IDs to be deleted
- 
-> Use a LEFT JOIN to join the Orders table onto the Customers table and check for a NULL value in the OrderID column
+
 
 ## Create Database and Table
 
